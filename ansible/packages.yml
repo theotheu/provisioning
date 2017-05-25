@@ -9,5 +9,6 @@
   roles:
     - java
     - mysql
+    - sonar
 #    - common
 #    - users
