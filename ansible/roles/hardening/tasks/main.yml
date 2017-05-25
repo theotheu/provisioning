@@ -1,0 +1,28 @@
+---
+
+#- name: backup named.conf.options
+#  command: cp -f /etc/bind/named.conf.options /etc/bind/named.conf.options.bak
+#  
+#- name: Make sure bind9 is installed (not all ubuntu images have bind installed by default)
+#  apt: 
+#    pkg=bind9
+#    state=present 
+#    update-cache=yes    
+#       
+#- name: Disable Open DNS recursion and remove version info
+#  lineinfile: 
+#    dest=/etc/bind/named.conf.options
+#    regexp='^\};'
+#    insertbefore='^\};'
+#    line='\n        recursion no;\n        version "Not Disclosed";\n}'
+#    state=present
+    
+- include: rootkit.yml  
+- include: protect_su_by_limitin_only_to_admin_group.yml
+- include: ip_spoofing.yml
+- include: fail2ban.yml
+- include: iptables.yml
+- include: prevent_root_log_in.yml
+
+- name: Finally reboot the machine to make sure all services are active with latest configurations
+  command: shutdown -r now

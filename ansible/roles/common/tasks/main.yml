@@ -1,0 +1,48 @@
+---
+
+- name: Update and upgrade apt packages
+  apt: >
+    upgrade=yes
+    update_cache=yes
+    cache_valid_time=3600
+    
+- name: Install common packages
+  action:
+    apt pkg={{ item }} 
+    state=present
+  with_items:
+  - vim
+  - wget
+  - git
+  - curl
+  - tmux
+
+#- name: Autoremove unnecessary packages
+#  command: apt-get -q -y autoremove
+#  register: autoremove_output
+#  changed_when: "'The following packages will be REMOVED' in autoremove_output.stdout"
+
+- name: Check if packages need to be autoremoved
+  command: apt-get --dry-run autoremove
+  register: check_autoremove
+  changed_when: False
+- name: Autoremove unused packages
+  command: apt-get -y autoremove
+  when: "'packages will be REMOVED' in check_autoremove.stdout"
+
+- name: Set locale languages
+  locale_gen: name=en_US.UTF-8
+
+- name: Enable welcome message
+  replace:
+    dest=/etc/ssh/sshd_config
+    regexp='^#Banner /etc/issue.net'
+    replace='Banner /etc/issue.net'
+    backup=yes
+    
+- name: Set welcome message
+  template:
+    src=welcome_message.j2
+    dest=/etc/issue.net    
+    backup=yes
+  notify: restart ssh

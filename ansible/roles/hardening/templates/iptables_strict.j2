@@ -1,0 +1,146 @@
+#!/bin/bash
+
+##########################################################################################################################################
+# IPTABLES settings
+# Needs review
+##########################################################################################################################################
+
+# Clear old Rules
+# Flush all current rules from iptables
+iptables -t nat -F
+iptables -t nat -X
+iptables -t mangle -F
+iptables -t mangle -X
+iptables -F
+iptables -X
+iptables -P INPUT ACCEPT
+iptables -P FORWARD ACCEPT
+iptables -P OUTPUT ACCEPT                                                   		
+
+
+# Allow SSH connections on tcp port 65001
+# This is essential when working on remote servers via SSH to prevent locking yourself out of the system
+iptables -A INPUT -p tcp --dport 65001 -j ACCEPT
+
+
+# Set default policies for INPUT, FORWARD and OUTPUT chains
+iptables -P INPUT DROP                                               	# Set default chain policies to DROP
+iptables -P FORWARD DROP                                           		# Set default chain policies to DROP
+iptables -P OUTPUT ACCEPT                                           	# Set default chain policies to ACCEPT
+
+
+# Set access for localhost (loopback)
+iptables -A INPUT -i lo -j ACCEPT                                   	# Allow loopback access from INPUT
+iptables -A OUTPUT -o lo -j ACCEPT                                  	# Allow loopback access from OUTPUT
+
+
+# Allow Established Connections (prevent being dropped from SSH as these commands are typed)
+iptables -A INPUT -i eth0 -m state --state RELATED,ESTABLISHED -j ACCEPT
+iptables -A INPUT -i lo -j ACCEPT
+
+
+# BLACKLIST IP's
+# iptables -A INPUT -s "BLOCK_THIS_IP" -j DROP                      	# Block a specific ip-address
+# iptables -A INPUT -s "BLOCK_THIS_IP" -j DROP              			# Block a specific ip-address
+# iptables -A INPUT -s "BLOCK_THIS_IP" -j DROP            				# Block a specific ip-address
+# iptables -A INPUT -s "BLOCK_THIS_IP" -j DROP              			# Block a specific ip-address
+
+
+# WHITELIST IP's
+iptables -A INPUT -s 127.0.0.1/32 -j ACCEPT                         	# Allow Anything from localhost
+
+
+# ALLOWED SERVICES
+iptables -A INPUT -p tcp -m state --state NEW --dport 22 -j ACCEPT                        	    # PORT 22        SSH    - Allow incoming connections
+iptables -A OUTPUT -o eth0 -p tcp --sport 25 -m state --state ESTABLISHED -j ACCEPT             # PORT 25        SMTP   - Allow connections to outbound
+iptables -A OUTPUT -p udp -o eth0 --dport 53 -j ACCEPT                                        	# PORT 53        DNS    - Allow connections to outbound
+iptables -A INPUT -p tcp -m tcp --dport 80 -m state --state NEW,ESTABLISHED -j ACCEPT           # PORT 80        HTTPD  - Allow connections from anywhere
+iptables -A INPUT -p tcp --dport 80 -m limit --limit 50/minute --limit-burst 200 -j ACCEPT      # PORT 80        HTTPD  - Rate Limit from outside (prevent DOS attacks)
+iptables -A INPUT -p tcp -m tcp --dport 443 -m state --state NEW,ESTABLISHED -j ACCEPT          # PORT 443       SSL    - Allow connections from anywhere
+iptables -A INPUT -p tcp -m tcp --dport 3000:3999 -m state --state NEW,ESTABLISHED -j ACCEPT    # PORT 3000:3999 HTTP   - Allow connections (node.js)
+
+# allow git
+# http://www.nigeldunn.com/2011/06/29/iptables-rules-to-allow-git/
+iptables -A OUTPUT -o eth0 -p tcp --dport 9418 -m state --state NEW,ESTABLISHED -j ACCEPT
+iptables -A INPUT -i eth0 -p tcp --sport 9418 -m state --state ESTABLISHED -j ACCEPT
+# git-daemon
+# http://tjworld.net/wiki/Howto/GitPublicRepositoryInstallAndConfigure
+iptables -A INPUT -p tcp -m tcp --dport 9418 -j ACCEPT
+# For git over ssh (allows push)
+# http://tjworld.net/wiki/Howto/GitPublicRepositoryInstallAndConfigure
+#iptables -A INPUT -p tcp -m tcp -s 84.12.34.240/29 --dport 22 -j ACCEPT
+
+# Allow Loopback Access
+# http://www.thegeekstuff.com/2011/06/iptables-rules-examples/
+iptables -A INPUT -i lo -j ACCEPT
+iptables -A OUTPUT -o lo -j ACCEPT
+
+# Outgoing DNS
+# http://stackoverflow.com/questions/11064248/block-all-udp-traffic-except-dns-using-iptables
+iptables -A INPUT -p udp --sport 53 -j ACCEPT
+iptables -A INPUT -p udp --dport 53 -j ACCEPT
+iptables -A OUTPUT -p udp --sport 53 -j ACCEPT
+iptables -A OUTPUT -p udp --dport 53 -j ACCEPT
+
+iptables -A INPUT -p udp -j DROP
+iptables -A OUTPUT -p udp -j DROP
+
+iptables -A OUTPUT -p udp -o eth0 --dport 53 -j ACCEPT
+iptables -A INPUT -p udp -i eth0 --sport 53 -j ACCEPT
+
+# PING - Allow ICMP (ping) packets
+#iptables -A INPUT -p icmp --icmp-type echo-request -j DROP
+#iptables -A OUTPUT -p icmp --icmp-type echo-reply -j ACCEPT
+#iptables -A OUTPUT -p icmp --icmp-type echo-request -j ACCEPT
+#iptables -A INPUT -p icmp --icmp-type echo-reply -j DROP
+
+# Drop Ping from Outside to Inside
+# http://www.thegeekstuff.com/2011/06/iptables-rules-examples/
+iptables -A INPUT -p icmp --icmp-type echo-request -j DROP
+iptables -A OUTPUT -p icmp --icmp-type echo-reply -j DROP
+
+
+# Allow Ping from Inside to Outside
+# http://www.thegeekstuff.com/2011/06/iptables-rules-examples/
+iptables -A OUTPUT -p icmp --icmp-type echo-request -j ACCEPT
+iptables -A INPUT -p icmp --icmp-type echo-reply -j ACCEPT
+
+# Validate packets
+iptables -A INPUT   -m state --state INVALID -j DROP                                        # Drop invalid packets
+iptables -A FORWARD -m state --state INVALID -j DROP                                        # Drop invalid packets
+iptables -A OUTPUT  -m state --state INVALID -j DROP                                        # Drop invalid packets
+iptables -A INPUT -p tcp -m tcp --tcp-flags SYN,FIN SYN,FIN -j DROP                         # Drop TCP - SYN,FIN packets
+iptables -A INPUT -p tcp -m tcp --tcp-flags SYN,RST SYN,RST -j DROP                         # Drop TCP - SYN,RST packets
+
+# Reject Invalid networks (Spoof)
+iptables -A INPUT -s 10.0.0.0/8       -j DROP                                               # (Spoofed network)
+iptables -a INPUT -s 192.0.0.1/24     -j DROP                                               # (Spoofed network)
+iptables -A INPUT -s 169.254.0.0/16   -j DROP                                               # (Spoofed network)
+iptables -A INPUT -s 172.16.0.0/12    -j DROP                                               # (Spoofed network)
+iptables -A INPUT -s 224.0.0.0/4      -j DROP                                               # (Spoofed network)
+iptables -A INPUT -d 224.0.0.0/4      -j DROP                                               # (Spoofed network)
+iptables -A INPUT -s 240.0.0.0/5      -j DROP                                               # (Spoofed network)
+iptables -A INPUT -d 240.0.0.0/5      -j DROP                                               # (Spoofed network)
+iptables -A INPUT -s 0.0.0.0/8        -j DROP                                               # (Spoofed network)
+iptables -A INPUT -d 0.0.0.0/8        -j DROP                                               # (Spoofed network)
+iptables -A INPUT -d 239.255.255.0/24 -j DROP                                               # (Spoofed network)
+iptables -A INPUT -d 255.255.255.255  -j DROP                                               # (Spoofed network)
+
+# CHAINS
+
+# SYNFLOOD CHAIN
+iptables -A INPUT -m state --state NEW -p tcp -m tcp --syn -m recent --name SYNFLOOD --set
+iptables -A INPUT -m state --state NEW -p tcp -m tcp --syn -m recent --name SYNFLOOD --update --seconds 1 --hitcount 20 -j DROP
+
+# Logging CHAIN
+iptables -N LOGGING                                                                                  # Create `LOGGING` chain for logging denied packets
+iptables -A INPUT -j LOGGING                                                                         # Create `LOGGING` chain for logging denied packets
+iptables -A LOGGING -m limit --limit 2/min -j LOG --log-prefix "IPTables Packet Dropped: " --log-level 6    # Log denied packets to /var/log/messages
+iptables -A LOGGING -j DROP                                                                          # Drop everything
+
+
+# List rules
+iptables -L -v
+
+
+iptables-save > /etc/iptables.rules

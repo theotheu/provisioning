@@ -1,0 +1,11 @@
+---
+
+- name: Install packages
+  hosts: all
+  user: root
+  
+  roles:
+   - java
+   - mongodb
+   - node
+   - lamp

@@ -1,0 +1,39 @@
+#####################
+# Passwords
+#
+# Make sure that Passlib is installed with `pip install passlib`
+# Run: `python -c "from passlib.hash import sha512_crypt; import getpass; print sha512_crypt.encrypt(getpass.getpass())"`
+# @see http://docs.ansible.com/ansible/faq.html#how-do-i-generate-crypted-passwords-for-the-user-module
+#
+#####################
+
+# The name of the OS user (johndoe, ubuntu, vagrant)
+username: vagrant
+password: '$6$rounds=100000$vcEVMb1oJOPHy6ui$PTnvifu.xDG8cez.FBusjI18nwe9J/Hyms/IRgXSlsJwyGgSkEHEKRs658A8Lb7DzT6fSVF6Hh4aLolauXWm81'
+
+webdev_password: '$6$rounds=100000$vcEVMb1oJOPHy6ui$PTnvifu.xDG8cez.FBusjI18nwe9J/Hyms/IRgXSlsJwyGgSkEHEKRs658A8Lb7DzT6fSVF6Hh4aLolauXWm81'
+
+# MySQL root password
+mysql_password: PASSWORD
+
+# Timezone
+server_timezone: Europe/Amsterdam
+
+# Locale
+locale: en_US.UTF-8
+
+#####################
+#
+# Hardening 
+#
+#####################
+
+ssh_port: 22
+
+fail2ban:
+  config:
+    ignoreip: 127.0.0.1/8
+    bantime: 300
+    maxretry: 6
+    filter: sshd
+    port: "{{ ssh_port }}"

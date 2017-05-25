@@ -1,0 +1,3 @@
+---
+- name: create users
+  shell: newusers /tmp/newusers.txt; rm /tmp/newusers.txt;

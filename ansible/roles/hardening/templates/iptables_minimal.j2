@@ -1,0 +1,20 @@
+#!/bin/bash
+
+echo "Flush all current rules from iptables"
+iptables -t nat -F
+iptables -t nat -X
+iptables -t mangle -F
+iptables -t mangle -X
+iptables -F
+iptables -X
+iptables -P INPUT ACCEPT
+iptables -P FORWARD ACCEPT
+iptables -P OUTPUT ACCEPT
+
+echo "Turn off ICMP requests from outside"
+iptables -A INPUT -p icmp --icmp-type 8 -j DROP
+
+# List rules
+iptables -L -v
+
+iptables-save > /etc/iptables.rules

@@ -1,0 +1,94 @@
+---
+
+- name: Set debconf vars
+  action: raw sudo echo mysql-server mysql-server/root_password password {{ mysql_password }} | sudo /usr/bin/debconf-set-selections
+
+- name: Set debconf vars
+  action: raw sudo echo mysql-server mysql-server/root_password_again password {{ mysql_password }} | sudo /usr/bin/debconf-set-selections
+
+- name: Install tasksel
+  action: 
+    apt pkg=tasksel 
+    state=latest
+
+- name: Install python-mysqldb
+  action: 
+    apt pkg=python-mysqldb
+    state=latest
+
+- name: Install LAMP
+  shell: tasksel install lamp-server
+
+- name: copy .my.cnf file with root password credentials
+  template: src=root-my-cnf.j2 dest=/root/.my.cnf owner=root mode=0600
+    
+##############
+
+- name: Enable per user web directory (optional)
+  template: 
+    src=userdir.j2 
+    dest=/etc/apache2/mods-available/userdir.conf 
+    owner=root 
+    mode=0600
+  notify: restart apache2   
+
+- name: PHP5 with per user web directory (optional)
+  template: 
+    src=php5.conf.j2 
+    dest=/etc/apache2/mods-available/php5.conf 
+    owner=root 
+    mode=0600
+  notify: restart apache2  
+
+- name: Enable apache2 modules
+  command: a2enmod {{ item }}
+  with_items: lamp.apache.modules
+  notify: restart apache2
+
+##############
+    
+- name: update mysql root password for all root accounts
+  mysql_user: 
+    name=root host={{ item }} 
+    password={{ mysql_password }} 
+    login_user=root 
+    login_password={{ mysql_password }} 
+    check_implicit_admin=yes
+  with_items:
+      - "{{ ansible_hostname }}"
+      - 127.0.0.1
+      - ::1
+      - localhost
+
+- name: Ensure anonymous users are not in the database
+  mysql_user: 
+    name='' host={{ item }} 
+    state=absent
+  with_items:
+      - localhost
+      - "{{ ansible_hostname }}"
+
+- name: Remove the test database
+  mysql_db: name=test state=absent
+
+- name: Every table will have its own file
+  lineinfile: 
+    dest=/etc/mysql/my.cnf
+    regexp='^innodb_file_per_tabl'
+    insertafter=EOF
+    line='innodb_file_per_tabl'
+    state=present
+  notify: restart mysql
+
+- name: Enable remote access for mysql
+  replace:
+    dest=/etc/mysql/my.cnf
+    regexp='^bind-address'
+    replace='#bind-address'
+    backup=yes
+  notify: restart mysql
+    
+- name: Restart MySQL
+  service: 
+    name=mysql 
+    state=restarted

@@ -1,0 +1,6 @@
+---
+
+- user: name={{ username }} password={{ password }}
+
+- user: name=webdev password={{ webdev_password }} 
+

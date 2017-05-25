@@ -1,0 +1,15 @@
+---
+
+- name: Prevent IP spoofing
+  lineinfile: 
+    dest=/etc/host.conf 
+    regexp="^order" 
+    line="order bind,hosts" 
+    state=present
+    
+- name: Prevent IP spoofing
+  lineinfile: 
+    dest=/etc/host.conf 
+    regexp="^nospoof" 
+    line="nospoof on" 
+    state=present

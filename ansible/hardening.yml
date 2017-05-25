@@ -1,0 +1,8 @@
+---
+
+- name: Hardening server
+  hosts: all
+  user: root
+  
+  roles:
+   - hardening

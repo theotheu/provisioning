@@ -1,0 +1,8 @@
+---
+
+- name: Create users
+  hosts: all
+  user: root
+  
+  roles:
+   - users

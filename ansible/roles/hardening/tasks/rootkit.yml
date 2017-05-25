@@ -1,0 +1,26 @@
+---
+
+- name: Install rootkit
+  action: 
+    apt pkg={{ item }}
+    state=latest
+    update_cache=yes
+  with_items: 
+    - rkhunter 
+    - chkrootkit
+    - unattended-upgrades
+    
+- name: Enable cronjob to update rootkit
+  cron:
+    name: rootkit
+    minute: 15
+    hour: 04
+    job: /usr/bin/rkhunter --cronjob --update --quiet
+
+- name: Create daily job for voor chkrootkit    
+  template: 
+    src=rootkit.j2 
+    dest=/etc/chkrootkit.conf 
+    owner=root 
+    mode=0600
+     

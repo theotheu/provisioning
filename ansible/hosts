@@ -1,0 +1,11 @@
+[vagrant]
+#localhost              ansible_connection=local
+localhost:2222
+
+[proxmox]
+#server3.tezzt.nl
+#server7.tezzt.nl
+#145.74.104.44
+
+[aws]
+#server8.tezzt.nl
