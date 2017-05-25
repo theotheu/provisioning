@@ -15,7 +15,7 @@ mkdir -p code
 cd code
 git clone https://github.com/theotheu/provisioning.git
 # just to make sure that latest commits are used
-git fetch --all && git reset --hard && git pull
+git fetch --all && git reset --hard && git pull origin master
 
 cd provisioning/ansible
 
