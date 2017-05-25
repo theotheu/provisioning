@@ -1,11 +1,13 @@
-# Run this with
-#  ansible-playbook packages.yml  --connection=local
+# Run this _as a regular user_  with
+#  sudo -H ansible-playbook packages.yml  --connection=local
+# @see https://github.com/geerlingguy/ansible-role-mysql/issues/212
 
 - hosts: 127.0.0.1
   connection: local
   become: true
   become_user: root
   roles:
+    - java
+    - mysql
 #    - common
 #    - users
-    - mysql
