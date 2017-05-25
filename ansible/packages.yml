@@ -11,8 +11,8 @@
   become_user: root
   roles:
     - {role: 'java', tags: 'java'}
-#    - mysql
-#    - sonar
-#    - jenkins
+    - {role: 'mysql', tags: 'mysql'}
+    - {role: 'sonar', tags: 'sonar'}
+    - {role: 'jenkins', tags: 'jenkins'}
 #    - common
 #    - users
