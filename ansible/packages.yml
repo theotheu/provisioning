@@ -10,9 +10,9 @@
   become: true
   become_user: root
   roles:
-    - java
-    - mysql
-    - sonar
-    - jenkins
+    - {role: 'java', tags: 'java'}
+#    - mysql
+#    - sonar
+#    - jenkins
 #    - common
 #    - users
