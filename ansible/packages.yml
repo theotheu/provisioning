@@ -16,6 +16,6 @@
     - {role: mysql, tags: mysql}
     - {role: sonar, tags: sonar}
     - {role: jenkins, tags: jenkins}
-    - {role: nginx, tags: nginx}
+   # - {role: nginx, tags: nginx}
 
 
