@@ -18,8 +18,6 @@
 #    - common
 #    - users
 
-
----
 - hosts: all
   roles:
     - role: nginx
