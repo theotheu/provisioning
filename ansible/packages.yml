@@ -1,11 +1,11 @@
----
+# Run this with
+#  ansible-playbook packages.yml  --connection=local
 
-- name: Install packages
-  hosts: all
-  user: root
-  
+- hosts: 127.0.0.1
+  connection: local
+  become: true
+  become_user: root
   roles:
-   - java
-   - mongodb
-   - node
-   - lamp
+#    - common
+#    - users
+    - mysql
