@@ -1,7 +1,7 @@
 
 # Ansible provisioning
 
-The vagrant directory if for local test purposes.
+The vagrant directory is for local test purposes.
 
 If you want to test local, start with vagrant. Then continue with ansible.
 
