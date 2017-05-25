@@ -10,5 +10,6 @@
     - java
     - mysql
     - sonar
+    - jenkins
 #    - common
 #    - users
