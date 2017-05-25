@@ -52,7 +52,7 @@ nginx_sites:
      - location / {
        try_files $uri $uri/ /index.html;
        auth_basic            "Restricted";
-       auth_basic_user_file  auth_basic/demo;
+#       auth_basic_user_file  auth_basic/demo;
      }
      - location /images/ { try_files $uri $uri/ /index.html; }
      
