@@ -12,9 +12,9 @@
   become: true
   become_user: root
   roles:
-    - {role: nginxserver, tags: nginxserver}
     - {role: java, tags: java}
     - {role: mysql, tags: mysql}
     - {role: sonar, tags: sonar}
+    - {role: jenkins, tags: jenkins}
    
 
