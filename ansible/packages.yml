@@ -1,5 +1,8 @@
 # Run this _as a regular user_  with
 #  sudo -H ansible-playbook packages.yml  --connection=local
+#
+# Run a single role by executing
+#  sudo -H ansible-playbook packages.yml  --connection=local --tags "<role>"
 # @see https://github.com/geerlingguy/ansible-role-mysql/issues/212
 
 - hosts: 127.0.0.1
