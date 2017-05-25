@@ -14,7 +14,7 @@ cd ~
 mkdir -p code
 cd code
 git clone https://github.com/theotheu/provisioning.git
-cd ebig-provisioning/ansible
+cd provisioning/ansible
 
 # Issue with setting locales
 # @see issue https://github.com/ansible/ansible/issues/10698 
