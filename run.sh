@@ -13,7 +13,7 @@ sudo apt-get -y install ansible
 cd ~
 mkdir -p code
 cd code
-git clone https://github.com/theotheu/ebig-provisioning.git
+git clone https://github.com/theotheu/provisioning.git
 cd ebig-provisioning/ansible
 
 # Issue with setting locales
