@@ -16,7 +16,6 @@
     - {role: 'mysql', tags: 'mysql'}
     - {role: 'sonar', tags: 'sonar'}
     - {role: 'jenkins', tags: 'jenkins'}
-    - {role: 'nginx', tags: 'nginx'}    
-#    - common
-#    - users
+    - {role: 'nginx', tags: 'nginx'}
+
 
