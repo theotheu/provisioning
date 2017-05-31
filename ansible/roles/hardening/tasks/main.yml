@@ -27,8 +27,8 @@
 - name: Apply strict iptables rules
   command: /root/iptables.strict
 
-- name: Make iptable rules persistent
-  command: iptables-save > /etc/iptables.rules
+#- name: Make iptable rules persistent
+#  command: iptables-save > /etc/iptables.rules
 
 - name: Finally reboot the machine to make sure all services are active with latest configurations
   command: shutdown -r now
