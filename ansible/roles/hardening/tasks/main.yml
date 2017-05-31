@@ -20,16 +20,12 @@
 - include: rootkit.yml  
 - include: protect_su_by_limitin_only_to_admin_group.yml
 - include: ip_spoofing.yml
-- include: iptables.yml
-- name: Apply strict iptables rules
-  command: /root/iptables.strict
-
 - include: fail2ban.yml
+- include: iptables.yml
 - include: prevent_root_log_in.yml
 
-
-#- name: Make iptable rules persistent
-#  command: iptables-save > /etc/iptables.rules
+- name: Apply strict iptables rules
+  command: /root/iptables.strict
 
 - name: Finally reboot the machine to make sure all services are active with latest configurations
   command: shutdown -r now
