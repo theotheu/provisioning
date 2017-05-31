@@ -21,11 +21,12 @@
 - include: protect_su_by_limitin_only_to_admin_group.yml
 - include: ip_spoofing.yml
 - include: iptables.yml
+- name: Apply strict iptables rules
+  command: /root/iptables.strict
+
 - include: fail2ban.yml
 - include: prevent_root_log_in.yml
 
-- name: Apply strict iptables rules
-  command: /root/iptables.strict
 
 #- name: Make iptable rules persistent
 #  command: iptables-save > /etc/iptables.rules
