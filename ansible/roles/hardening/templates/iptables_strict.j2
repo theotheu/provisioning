@@ -18,9 +18,9 @@ iptables -P FORWARD ACCEPT
 iptables -P OUTPUT ACCEPT                                                   		
 
 
-# Allow SSH connections on tcp port 65001
+# Allow SSH connections on tcp port 22
 # This is essential when working on remote servers via SSH to prevent locking yourself out of the system
-iptables -A INPUT -p tcp --dport 65001 -j ACCEPT
+iptables -A INPUT -p tcp --dport 22 -j ACCEPT
 
 
 # Set default policies for INPUT, FORWARD and OUTPUT chains
@@ -58,6 +58,13 @@ iptables -A INPUT -p tcp -m tcp --dport 80 -m state --state NEW,ESTABLISHED -j A
 iptables -A INPUT -p tcp --dport 80 -m limit --limit 50/minute --limit-burst 200 -j ACCEPT      # PORT 80        HTTPD  - Rate Limit from outside (prevent DOS attacks)
 iptables -A INPUT -p tcp -m tcp --dport 443 -m state --state NEW,ESTABLISHED -j ACCEPT          # PORT 443       SSL    - Allow connections from anywhere
 iptables -A INPUT -p tcp -m tcp --dport 3000:3999 -m state --state NEW,ESTABLISHED -j ACCEPT    # PORT 3000:3999 HTTP   - Allow connections (node.js)
+
+# Brute force protection
+# This rule will block an IP if it attempts more than 3 connections per minute to SSH. 
+# Notice that the state is set to NEW. This means only new connections not established ones are impacted. 
+# Established connections are the result of a successful SSH authentication, so users who authenticate properly will not be blocked.
+iptables -I INPUT -p tcp --dport 22 -i eth0 -m state --state NEW -m recent --set
+iptables -I INPUT -p tcp --dport 22 -i eth0 -m state --state NEW -m recent  --update --seconds 60 --hitcount 4 -j DROP
 
 # allow git
 # http://www.nigeldunn.com/2011/06/29/iptables-rules-to-allow-git/
