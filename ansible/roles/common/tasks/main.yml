@@ -1,5 +1,9 @@
 ---
 
+- name: Set timezone
+  timezone:
+    name: "{{ server_timezone }}"
+
 - name: Update and upgrade apt packages
   apt: >
     upgrade=yes
