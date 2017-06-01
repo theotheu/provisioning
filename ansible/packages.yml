@@ -16,6 +16,5 @@
     - {role: mysql, tags: mysql}
     - {role: sonar, tags: sonar}
     - {role: jenkins, tags: jenkins}
-    - {role: unattended-upgrades, tags: unattended-upgrades}
    
 
