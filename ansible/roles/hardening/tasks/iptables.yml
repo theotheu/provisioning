@@ -22,6 +22,12 @@
     src=iptables_default.j2 
     dest=/etc/network/iptables.up.rules
     
+- name: Copy iptables template rules over to /etc/iptables
+  template: 
+    src=iptables_strict.j2 
+    dest=/etc/iptables/rules.v4
+  notify: restart iptables-persistent
+  tags: iptables_config
 
 
         
