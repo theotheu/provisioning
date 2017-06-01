@@ -1,26 +1,33 @@
 ---
 
-- name:
-  apt:
-    name=iptables-persistent
-    state=present
-
-- name: Copy iptables rules with minimal protection
-  template: 
-    src=iptables_minimal.j2 
-    dest=/root/iptables.minimal
-    mode=744
-
-- name: Copy iptables rules with strict protection
-  template: 
-    src=iptables_strict.j2 
-    dest=/root/iptables.strict
-    mode=744
-
-- name: Copy iptables rules with default protection
-  template: 
-    src=iptables_default.j2 
-    dest=/etc/network/iptables.up.rules
+#- name:
+#  apt:
+#    name=iptables-persistent
+#    state=present
+#
+#- name: Copy iptables rules with minimal protection
+#  template: 
+#    src=iptables_minimal.j2 
+#    dest=/root/iptables.minimal
+#    mode=744
+#
+#- name: Copy iptables rules with strict protection
+#  template: 
+#    src=iptables_strict.j2 
+#    dest=/root/iptables.strict
+#    mode=744
+#
+#- name: Copy iptables rules with default protection
+#  template: 
+#    src=iptables_default.j2 
+#    dest=/etc/network/iptables.up.rules
+    
+- name: install_iptables_persistent
+  environment:
+     DEBIAN_FRONTEND: noninteractive
+  apt: pkg=iptables-persistent state=present
+  tags: install_iptables_persistent    
+    
     
 - name: Copy iptables template rules over to /etc/iptables
   template: 
