@@ -1,42 +1,44 @@
 ---
 
-#- name:
-#  apt:
-#    name=iptables-persistent
-#    state=present
-#
-#- name: Copy iptables rules with minimal protection
-#  template: 
-#    src=iptables_minimal.j2 
-#    dest=/root/iptables.minimal
-#    mode=744
-#
-#- name: Copy iptables rules with strict protection
-#  template: 
-#    src=iptables_strict.j2 
-#    dest=/root/iptables.strict
-#    mode=744
-#
-#- name: Copy iptables rules with default protection
-#  template: 
-#    src=iptables_default.j2 
-#    dest=/etc/network/iptables.up.rules
-    
-- name: install_iptables_persistent
-  environment:
-     DEBIAN_FRONTEND: noninteractive
-  apt: pkg=iptables-persistent state=present
-  tags: install_iptables_persistent    
-    
-    
-- name: Copy iptables template rules over to /etc/iptables
+- name:
+  apt:
+    name=iptables-persistent
+    state=present
+
+- name: Copy iptables rules with minimal protection
+  template: 
+    src=iptables_minimal.j2 
+    dest=/root/iptables.minimal
+    mode=744
+
+- name: Copy iptables rules with strict protection
   template: 
     src=iptables_strict.j2 
-    dest=/etc/iptables/rules.v4
-  notify: restart iptables-persistent
-  tags: iptables_config
+    dest=/root/iptables.strict
+    mode=744
 
-
+- name: Copy iptables rules with default protection
+  template: 
+    src=iptables_default.j2 
+    dest=/etc/network/iptables.up.rules
+    
+- Run iptables.strict with higehest security
+  command:
+    /root/iptables.strict
         
+- Make the new rules persistent
+  command:
+    iptables -S > /etc/iptables.rules
 
+- name: Copy if-pre-up.d
+  template: 
+    src=if-pre-up-d.j2 
+    dest=/etc/network/if-pre-up.d/iptables
+    mode=744
 
+- name: Copy if-post-down.d
+  template: 
+    src=if-post-down-d.j2 
+    dest=/etc/network/if-post-down.d/iptables
+    mode=744
+    
