@@ -23,12 +23,10 @@
     dest=/etc/network/iptables.up.rules
     
 - Run iptables.strict with higehest security
-  command:
-    /root/iptables.strict
+  shell: /root/iptables.strict
         
 - Make the new rules persistent
-  command:
-    iptables -S > /etc/iptables.rules
+  shell: iptables -S > /etc/iptables.rules
 
 - name: Copy if-pre-up.d
   template: 
