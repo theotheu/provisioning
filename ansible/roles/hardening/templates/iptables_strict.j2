@@ -59,6 +59,8 @@ iptables -A INPUT -p tcp --dport 80 -m limit --limit 50/minute --limit-burst 200
 iptables -A INPUT -p tcp -m tcp --dport 443 -m state --state NEW,ESTABLISHED -j ACCEPT          # PORT 443       SSL    - Allow connections from anywhere
 iptables -A INPUT -p tcp -m tcp --dport 3000:3999 -m state --state NEW,ESTABLISHED -j ACCEPT    # PORT 3000:3999 HTTP   - Allow connections (node.js)
 
+iptables -A INPUT -m state --state RELATED,ESTABLISHED -j ACCEPT
+
 # Brute force protection
 # This rule will block an IP if it attempts more than 3 connections per minute to SSH. 
 # Notice that the state is set to NEW. This means only new connections not established ones are impacted. 
@@ -144,8 +146,6 @@ iptables -N LOGGING                                                             
 iptables -A INPUT -j LOGGING                                                                         # Create `LOGGING` chain for logging denied packets
 iptables -A LOGGING -m limit --limit 2/min -j LOG --log-prefix "IPTables Packet Dropped: " --log-level 6    # Log denied packets to /var/log/messages
 iptables -A LOGGING -j DROP                                                                          # Drop everything
-
-iptables -A INPUT -m state --state RELATED,ESTABLISHED -j ACCEPT
 
 # List rules
 iptables -L -v
