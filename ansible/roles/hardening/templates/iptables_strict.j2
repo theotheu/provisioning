@@ -121,7 +121,7 @@ iptables -A INPUT -p tcp -m tcp --tcp-flags SYN,RST SYN,RST -j DROP             
 
 # Reject Invalid networks (Spoof)
 iptables -A INPUT -s 10.0.0.0/8       -j DROP                                               # (Spoofed network)
-iptables -a INPUT -s 192.0.0.1/24     -j DROP                                               # (Spoofed network)
+iptables -A INPUT -s 192.0.0.1/24     -j DROP                                               # (Spoofed network)
 iptables -A INPUT -s 169.254.0.0/16   -j DROP                                               # (Spoofed network)
 iptables -A INPUT -s 172.16.0.0/12    -j DROP                                               # (Spoofed network)
 iptables -A INPUT -s 224.0.0.0/4      -j DROP                                               # (Spoofed network)
