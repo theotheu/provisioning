@@ -24,7 +24,7 @@
     
 - name: Copy predefined iptables rules
   template: 
-    src=if-pre-up-d.j2 
+    src=iptables_strict_rules.j2 
     dest=/etc/iptables.rules
     mode=744
 
