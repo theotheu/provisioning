@@ -1,5 +1,5 @@
 
-# Ansible provisioning
+# Provisioning with Ansible
 
 The vagrant directory is for local test purposes.
 
