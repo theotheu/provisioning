@@ -13,6 +13,6 @@ See README in vagrant directory and ansible directory.
 `wget -qO- https://raw.githubusercontent.com/theotheu/provisioning/master/run.sh | bash`
 
 
-It is tested on Ubuntu 16.04, also works on Ubuntu 14.04.
+It is tested on Ubuntu 18.04. Also works on Ubuntu 16.04 and Ubuntu 14.04.
 
 Iptables is applied in strict mode. See `/root/iptables.strict`. Use `/root/iptables.minial` for unsecure operations (not recommended).
