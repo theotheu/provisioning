@@ -3,7 +3,7 @@
 - name: Install fail2ban
   apt: 
     pkg=fail2ban 
-    state=installed 
+    state=present 
     update-cache=yes
   register: 
     fail2ban_install
