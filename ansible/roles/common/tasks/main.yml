@@ -36,6 +36,8 @@
 - name: Autoremove unused packages
   command: apt-get -y autoremove
   when: "'packages will be REMOVED' in check_autoremove.stdout"
+  environment: 
+    DEBIAN_FRONTEND=noninteractive  
 
 - name: Enable welcome message
   replace:
@@ -43,7 +45,7 @@
     regexp='^#Banner none'
     replace='Banner /etc/issue.net'
     backup=yes
-
+    
 - name: Set welcome message
   template:
     src=welcome_message.j2
