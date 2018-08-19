@@ -19,8 +19,8 @@
     
 - include: rootkit.yml  
 - include: protect_su_by_limitin_only_to_admin_group.yml
-#- include: ip_spoofing.yml
-#- include: iptables.yml
+- include: ip_spoofing.yml
+- include: iptables.yml
 - include: fail2ban.yml 
 - include: prevent_root_log_in.yml
 
