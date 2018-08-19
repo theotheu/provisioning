@@ -6,9 +6,11 @@ Installation of vagrant
 
 Initialization
 --------------
-`git clone https://github.com/theotheu/vagrant-dev.git`
+`git clone https://github.com/theotheu/provisoning`
 
-`cd vagrant-dev`
+Checkout the ubuntu version, eg `git checkout 18.04`
+
+`cd vagrant`
 
 `vagrant up`
 
