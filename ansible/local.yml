@@ -2,9 +2,11 @@
   connection: local
   become: true
   become_user: root
+  environment: 
+    DEBIAN_FRONTEND=noninteractive
   roles:
     - common
     - unattended-upgrades
     - users
-#    - hardening
+    - hardening
     
