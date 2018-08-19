@@ -43,7 +43,7 @@
     regexp='^#Banner none'
     replace='Banner /etc/issue.net'
     backup=yes
-    
+
 - name: Set welcome message
   template:
     src=welcome_message.j2
