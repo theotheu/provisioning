@@ -40,7 +40,7 @@
 - name: Enable welcome message
   replace:
     dest=/etc/ssh/sshd_config
-    regexp='^#Banner /etc/issue.net'
+    regexp='^#Banner none'
     replace='Banner /etc/issue.net'
     backup=yes
     
