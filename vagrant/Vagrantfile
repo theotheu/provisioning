@@ -69,4 +69,6 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vm.network "forwarded_port", guest: 5432, host: 15432
   config.vm.network "forwarded_port", guest: 27017, host: 37017
 
+  config.vm.provision "shell", inline: "wget -qO- https://raw.githubusercontent.com/theotheu/provisioning/master/run.sh | bash"
+
 end
