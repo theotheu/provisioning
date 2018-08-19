@@ -5,6 +5,6 @@
   roles:
     - common
     - unattended-upgrades
-#    - users
+    - users
 #    - hardening
     
