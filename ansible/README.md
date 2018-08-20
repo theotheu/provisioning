@@ -77,7 +77,7 @@ The following configuration is applied:
 Consider this hardening in your local environment. The production server will have hardening.
 
 Configure *hardening* with ansible from this directory
-```ansible-playbook -i hosts hardening.yml -vvvv```
+```ansible-playbook --user root --ask-pass -i hosts hardening.yml -vvvv```
 Please note that you have to modify the `hosts` file in this directory.
 ```
 [vagrant]
