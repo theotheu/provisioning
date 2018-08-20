@@ -78,4 +78,24 @@ Consider this hardening in your local environment. The production server will ha
 
 Configure *hardening* with ansible from this directory
 ```ansible-playbook -i hosts hardening.yml -vvvv```
+Please note that you have to modify the `hosts` file in this directory.
+```
+[vagrant]
+localhost              ansible_connection=local
+```
+
+Original
+```
+[vagrant]
+#localhost              ansible_connection=local
+localhost:2222
+
+[proxmox]
+#server3.tezzt.nl
+#server7.tezzt.nl
+#145.74.104.44
+
+[aws]
+#server8.tezzt.nl
+```
 
