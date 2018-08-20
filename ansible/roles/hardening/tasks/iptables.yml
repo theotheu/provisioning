@@ -27,6 +27,11 @@
     path=/etc/network/if-post-down.d 
     state=directory    
 
+- name: make sure required directories exist
+  file: 
+    path=/etc/iptables/rules.v4 
+    state=directory    
+
 
 - name: Copy iptables rules with default protection
   template: 
