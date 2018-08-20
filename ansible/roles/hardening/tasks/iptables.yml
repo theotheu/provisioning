@@ -56,5 +56,5 @@
     dest=/etc/network/if-post-down.d/iptables
     mode=744
     
-- name: Apply strict iptables rules
-  command: /root/iptables.strict
+#- name: Apply strict iptables rules
+#  command: /root/iptables.strict
