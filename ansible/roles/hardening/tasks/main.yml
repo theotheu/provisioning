@@ -24,8 +24,8 @@
 - include: fail2ban.yml 
 - include: prevent_root_log_in.yml
 
-#- name: Apply strict iptables rules
-#  command: /root/iptables.strict
+- name: Apply strict iptables rules
+  command: /root/iptables.strict
 
 - name: Finally reboot the machine to make sure all services are active with latest configurations
   command: shutdown -r now

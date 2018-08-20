@@ -27,5 +27,5 @@ cd ansible
 sudo sed -i 's/AcceptEnv/# AcceptEnv/' /etc/ssh/sshd_config
 sudo service ssh restart
 
-ansible-playbook local.yml  --connection=local
+ansible-playbook local.yml  --connection=local -vvvv
 exit 0
