@@ -17,17 +17,17 @@
     dest=/root/iptables.strict
     mode=744
 
-- name: make sure required directories exist
+- name: Make sure required directories exist
   file: 
     path=/etc/network/if-pre-down.d 
     state=directory    
 
-- name: make sure required directories exist
+- name: Make sure required directories exist
   file: 
     path=/etc/network/if-post-down.d 
     state=directory    
 
-- name: make sure required directories exist
+- name: Make sure required directories exist
   file: 
     path=/etc/iptables
     state=directory    
@@ -60,13 +60,13 @@
   command: /root/iptables.strict
 
 # This playbook installs the iptables-persistant package
-- name: install_iptables_persistent
-  environment:
-     DEBIAN_FRONTEND: noninteractive
-  apt: pkg=iptables-persistent state=present
-  tags: install_iptables_persistent
-
-- name: Copy iptables template rules over to /etc/iptables
-  template: src=iptables_strict_rules.j2  dest=/etc/iptables/rules.v4
-  notify: restart iptables-persistent
-  tags: iptables_config
+#- name: install_iptables_persistent
+#  environment:
+#     DEBIAN_FRONTEND: noninteractive
+#  apt: pkg=iptables-persistent state=present
+#  tags: install_iptables_persistent
+#
+#- name: Copy iptables template rules over to /etc/iptables
+#  template: src=iptables_strict_rules.j2  dest=/etc/iptables/rules.v4
+#  notify: restart iptables-persistent
+#  tags: iptables_config
