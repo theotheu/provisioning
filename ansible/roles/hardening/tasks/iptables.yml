@@ -19,6 +19,11 @@
 
 - name: Make sure required directories exist
   file: 
+    path=/etc/network/if-pre-up.d 
+    state=directory    
+
+- name: Make sure required directories exist
+  file: 
     path=/etc/network/if-pre-down.d 
     state=directory    
 
