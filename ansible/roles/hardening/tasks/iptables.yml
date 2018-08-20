@@ -55,6 +55,19 @@
     src=if-post-down-d.j2 
     dest=/etc/network/if-post-down.d/iptables
     mode=744
-    
-#- name: Apply strict iptables rules
-#  command: /root/iptables.strict
+        
+- name: Apply strict iptables rules
+  command: /root/iptables.strict
+
+- name: Save rules for reboot
+  shell: 'iptables-save > /etc/iptables/rules.v4'  
+
+- name: Load rules at startup
+  shell: 'iptables-save > /etc/iptables/rules.v4'  
+  
+- name: Load rules at startup
+  template: 
+    src=restore-iptables-at-startup.j2 
+    dest=/etc/rc.local 
+    mode=766
+        
