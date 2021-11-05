@@ -27,5 +27,8 @@ cd ansible
 sudo sed -i 's/AcceptEnv/# AcceptEnv/' /etc/ssh/sshd_config
 sudo service ssh restart
 
+# @see https://stackoverflow.com/questions/43791040/suppress-ansible-ad-hoc-warning
+ANSIBLE_PYTHON_INTERPRETER=auto_silent
+
 ansible-playbook local.yml  --connection=local -vvvv
 exit 0
