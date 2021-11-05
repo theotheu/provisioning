@@ -12,7 +12,7 @@
 - name: "usermod -aG admin webdev"
   shell: usermod -aG admin webdev
   
-- name: "dpkg-statoverride --update --add root admin 4750 /bin/su"
-  command: dpkg-statoverride --update --force --add root admin 4750 /bin/su
+- name: "dpkg-statoverride --update --force-all --add root admin 4750 /bin/su"
+  command: dpkg-statoverride --update --force-all --add root admin 4750 /bin/su
 
         
