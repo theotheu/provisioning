@@ -11,7 +11,7 @@
 - name: We will enable Protocol 2. SSH by default works with Protocol 1. Protocol 2 is newer more secure and robust version introduced in 2006.
   lineinfile:
     path=/etc/ssh/sshd_config
-    insertbefore='Include \/etc\/ssh\/ssh_config\.d\/\*\.conf'
+    insertbefore='Include /etc/ssh/ssh_config.d/*.conf'
     line='Protocol 2'
     state=present
     backup=yes
