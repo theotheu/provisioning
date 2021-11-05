@@ -17,12 +17,12 @@
 #    line='\n        recursion no;\n        version "Not Disclosed";\n}'
 #    state=present
     
-- include: rootkit.yml  
-- include: protect_su_by_limitin_only_to_admin_group.yml
-#- include: ip_spoofing.yml
-- include: iptables.yml
-- include: fail2ban.yml 
+#- include: rootkit.yml  
+#- include: protect_su_by_limitin_only_to_admin_group.yml
+##- include: ip_spoofing.yml
+#- include: iptables.yml
+#- include: fail2ban.yml 
 - include: prevent_root_log_in.yml
 
-- name: Finally reboot the machine to make sure all services are active with latest configurations
-  command: shutdown -r now
+  #- name: Finally reboot the machine to make sure all services are active with latest configurations
+  #command: shutdown -r now
