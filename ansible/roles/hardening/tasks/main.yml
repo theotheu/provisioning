@@ -22,7 +22,8 @@
 ##- include: ip_spoofing.yml
 #- include: iptables.yml
 #- include: fail2ban.yml 
-- include: prevent_root_log_in.yml
+#- include: prevent_root_log_in.yml
+- include: ssh_protocol_2.yml
 
   #- name: Finally reboot the machine to make sure all services are active with latest configurations
   #command: shutdown -r now
