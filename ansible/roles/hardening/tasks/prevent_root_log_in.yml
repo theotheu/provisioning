@@ -5,7 +5,6 @@
     dest=/etc/ssh/sshd_config
     regexp='^PermitRootLogin yes'
     replace='PermitRootLogin no'
-    state=present
     backup=yes
   notify: restart ssh
 
