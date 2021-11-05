@@ -18,3 +18,9 @@ It is tested on Ubuntu 20.04.
 See branches for 14.04, 16.04, or 18.04.
 
 Iptables is applied in strict mode. See `/root/iptables.strict`. Use `/root/iptables.minial` for unsecure operations (not recommended).
+
+Running a specific task, eg. hardening, run:
+```
+cd ~/code/provisioning/ansible
+sudo ansible-playbook hardening.yml --connection=local -i hosts -vvvv
+```
