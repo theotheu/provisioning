@@ -8,7 +8,7 @@
   tasks:
     - ansible.builtin.import_role:
         name: common
-  -name: Running toher playbook
+  - name: Running other playbook
     ansible.builtin.import_playbook: packages.yml
   # roles:
   #   - common
