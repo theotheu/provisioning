@@ -9,7 +9,7 @@
   #   - ansible.builtin.import_role:
   #       name: common
 
-    - import_playbook: packages.yml
+- import_playbook: packages.yml
   # roles:
   #   - common
   #   - unattended-upgrades
