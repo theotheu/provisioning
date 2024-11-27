@@ -8,6 +8,6 @@
     - unattended-upgrades
     - users
     # - hardening
-    - import_tasks: packages
-    - import_tasks: hardening
+    - packages
+    # - hardening
     
