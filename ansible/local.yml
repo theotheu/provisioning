@@ -7,7 +7,10 @@
     - common
     - unattended-upgrades
     - users
+
+  import_playbook: 
+    - packages.yml
     # - hardening
-    - packages
+    # - packages
     # - hardening
     
