@@ -15,7 +15,7 @@
     # - {role: java, tags: java}
     - {role: ansible-pyenv, tags: ansible-pyenv}
     - {role: ansible-role-nginx, tags: ansible-role-nginx}
-    - {role: ansible-role-letsencrypt, tags: ansible-role-letsencrypt}
-    #- {role: mysql, tags: mysql}
+    - {role: mysql, tags: mysql}
+    # - {role: ansible-role-letsencrypt, tags: ansible-role-letsencrypt}
     
 
