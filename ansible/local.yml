@@ -8,8 +8,8 @@
     - unattended-upgrades
     - users
 
-  import_playbook: 
-    - packages.yml
+  tasks:
+    - import_tasks packages.yml
     # - hardening
     # - packages
     # - hardening
