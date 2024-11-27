@@ -4,7 +4,8 @@
 
 - name: Ensure MySQL packages are installed.
   pacman: "name={{ item }} state=present"
-  with_items: "{{ mysql_packages }}"
+  with_items: 
+    - "{{ mysql_packages }}"
   register: arch_mysql_install_packages
 
 # Init the database if mysql is newly installed
