@@ -14,8 +14,6 @@
   roles:
     # - {role: java, tags: java}
     - {role: pythons, tags: pythons}
-    - {role: mysql, tags: mysql}
-    # - {role: sonar, tags: sonar}
-    # - {role: jenkins, tags: jenkins}
-   
+    #- {role: mysql, tags: mysql}
+    
 
