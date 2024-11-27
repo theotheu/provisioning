@@ -13,9 +13,9 @@ See README in vagrant directory and ansible directory.
 `wget -qO- https://raw.githubusercontent.com/theotheu/provisioning/master/run.sh | bash`
 
 
-It is tested on Ubuntu 20.04. 
+It is tested on Ubuntu 22.04. 
 
-See branches for 14.04, 16.04, or 18.04.
+See branches for 14.04, 16.04, 18.04, or 22.04.
 
 Iptables is applied in strict mode. See `/root/iptables.strict`. Use `/root/iptables.minial` for unsecure operations (not recommended).
 
