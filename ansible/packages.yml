@@ -13,7 +13,7 @@
   become_user: root
   roles:
     # - {role: java, tags: java}
-    - {role: pythons, tags: pythons}
+    - {role: ansible-pyenv, tags: ansible-pyenv}
     #- {role: mysql, tags: mysql}
     
 
