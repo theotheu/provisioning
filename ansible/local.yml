@@ -3,12 +3,18 @@
   become: true
   become_user: root
 
-  roles:
-    - common
-    - unattended-upgrades
-    - users
-  - name: Include a play after another play
-    ansible.builtin.import_playbook:packages.yml
+
+
+  tasks:
+    - ansible.builtin.import_role:
+        name: common
+  # roles:
+  #   - common
+  #   - unattended-upgrades
+  #   - users
+  # - name: Include a play after another play
+  #   ansible.builtin.import_playbook:packages.yml
+
     # - hardening
     # - packages
     # - hardening
