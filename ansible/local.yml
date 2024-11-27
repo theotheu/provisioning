@@ -8,8 +8,7 @@
   tasks:
     - ansible.builtin.import_role:
         name: common
-    -  ansible.builtin.import_playbook:
-        packages.yml
+    -  ansible.builtin.import_playbook: packages.yml
   # roles:
   #   - common
   #   - unattended-upgrades
