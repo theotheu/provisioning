@@ -19,12 +19,12 @@
     
 #- include: rootkit.yml  
 - import_tasks: rootkit.yml  
-- include: protect_su_by_limitin_only_to_admin_group.yml
+- import_tasks: protect_su_by_limitin_only_to_admin_group.yml
 #- include: ip_spoofing.yml
-- include: iptables.yml
-- include: fail2ban.yml 
-- include: prevent_root_log_in.yml
-- include: ssh_protocol_2.yml
+- import_tasks: iptables.yml
+- import_tasks: fail2ban.yml 
+- import_tasks: prevent_root_log_in.yml
+- import_tasks: ssh_protocol_2.yml
 
 - name: Finally reboot the machine to make sure all services are active with latest configurations
   command: shutdown -r now
