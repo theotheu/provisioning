@@ -13,8 +13,8 @@
 #    - hardening
 
     
-- import_tasks: packages.yml
-- import_tasks: users.yml
+  - import_tasks: packages.yml
+  - import_tasks: users.yml
 
-#### Hardening should be the last step
-- import_tasks: hardening.yml
+  #### Hardening should be the last step
+  - import_tasks: hardening.yml
