@@ -7,8 +7,8 @@
     - common
     - unattended-upgrades
     - users
-
-  import_playbook: packages.yml
+  - name: Include a play after another play
+    ansible.builtin.import_playbook:packages.yml
     # - hardening
     # - packages
     # - hardening
