@@ -13,6 +13,9 @@ password: '$6$rounds=100000$vcEVMb1oJOPHy6ui$PTnvifu.xDG8cez.FBusjI18nwe9J/Hyms/
 
 webdev_password: '$6$rounds=100000$vcEVMb1oJOPHy6ui$PTnvifu.xDG8cez.FBusjI18nwe9J/Hyms/IRgXSlsJwyGgSkEHEKRs658A8Lb7DzT6fSVF6Hh4aLolauXWm81'
 
+email: 'theo.theunissen@gmail.com'
+
+
 # MySQL root password
 mysql_password: PASSWORD
 
