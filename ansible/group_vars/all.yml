@@ -2,8 +2,8 @@
 # Passwords
 #
 # Make sure that Passlib is installed with `pip install passlib`
-# Run: `python -c "from passlib.hash import sha512_crypt; import getpass; print sha512_crypt.encrypt(getpass.getpass())"`
-# @see http://docs.ansible.com/ansible/faq.html#how-do-i-generate-crypted-passwords-for-the-user-module
+# Run: `python3 -c "from passlib.hash import sha512_crypt; import getpass; print(sha512_crypt.hash('my_password'))"`
+# Replace <my_password> with your actual password
 #
 #####################
 
@@ -13,11 +13,12 @@ password: '$6$rounds=100000$vcEVMb1oJOPHy6ui$PTnvifu.xDG8cez.FBusjI18nwe9J/Hyms/
 
 webdev_password: '$6$rounds=100000$vcEVMb1oJOPHy6ui$PTnvifu.xDG8cez.FBusjI18nwe9J/Hyms/IRgXSlsJwyGgSkEHEKRs658A8Lb7DzT6fSVF6Hh4aLolauXWm81'
 
-email: 'theo.theunissen@gmail.com'
+
 
 
 # MySQL root password
-mysql_password: PASSWORD
+# mysql_password: PASSWORD
+mysql_password: '$6$rounds=656000$T5vx3a8jbRXzMllO$c9Bt1FkZ47lBSjHp0y8qHdk2WQGLQtNB7ZceAkZkeXhMskAD5rNZtGKG3uMfFK.CEO7W0o5Df66tYp251Ghlb.'
 
 # Timezone
 server_timezone: Europe/Amsterdam
