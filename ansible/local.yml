@@ -5,11 +5,11 @@
 
 
 
-  tasks:
-    - ansible.builtin.import_role:
-        name: common
-        
-  - import_playbook: packages.yml
+  # tasks:
+  #   - ansible.builtin.import_role:
+  #       name: common
+
+    - import_playbook: packages.yml
   # roles:
   #   - common
   #   - unattended-upgrades
