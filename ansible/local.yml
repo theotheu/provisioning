@@ -4,20 +4,14 @@
   become_user: root
 
 
-
-  # tasks:
-  #   - ansible.builtin.import_role:
-  #       name: common
-
-- import_playbook: packages.yml
-  # roles:
-  #   - common
-  #   - unattended-upgrades
-  #   - users
-  # - name: Include a play after another play
-  #   ansible.builtin.import_playbook:packages.yml
-
-    # - hardening
-    # - packages
-    # - hardening
+ roles:
+  - common
+  - unattended-upgrades
+  - users
+  - ansible-pyenv
+  - ansible-role-nginx
+  - mysql
+  - hardening
     
+
+# - import_playbook: packages.yml    
