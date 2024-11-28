@@ -38,7 +38,7 @@ sudo service ssh restart
 # @see https://stackoverflow.com/questions/43791040/suppress-ansible-ad-hoc-warning
 ANSIBLE_PYTHON_INTERPRETER=auto_silent
 
-ansible-playbook local.yml --connection=local -vvvv
+ansible-playbook local.yml --connection=local -vvvv --extra-vars "DB_ROOT_PWD=${DB_ROOT_PWD} db_root_pwd=${DB_ROOT_PWD}"
 
 rm -fr /tmp/my
 exit 0
