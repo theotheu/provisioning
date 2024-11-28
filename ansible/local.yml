@@ -8,9 +8,10 @@
     - set_fact:
         db_root_pwd: "{{ lookup('env', 'DB_ROOT_PWD') }}"
       run_once: true
-      
-    - debug:
-      var: ansible_super_secret
+
+    - name: bla die bla
+      - debug:
+        var: db_root_pwd
     
   # - debug:
   #   - msg:
