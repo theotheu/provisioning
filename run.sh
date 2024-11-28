@@ -1,7 +1,10 @@
 #!/usr/bin/env bash
 
+echo "######################################################################"
+echo "#"
 echo "DB_ROOT_PWD=${DB_ROOT_PWD}"
-exit
+echo "#"
+echo "######################################################################"
 
 DEBIAN_FRONTEND=noninteractive  
 
