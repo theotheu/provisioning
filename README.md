@@ -15,7 +15,7 @@ See README in vagrant directory and ansible directory.
 
 It is tested on Ubuntu 22.04. 
 
-See branches for 14.04, 16.04, 18.04, or 22.04.
+See branches for 14.04, 16.04, 18.04, or 20.04.
 
 Iptables is applied in strict mode. See `/root/iptables.strict`. Use `/root/iptables.minial` for unsecure operations (not recommended).
 
