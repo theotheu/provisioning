@@ -1,0 +1,13 @@
+# @see https://stackoverflow.com/questions/76786066/how-to-set-ansible-var-with-value-from-the-environment-variable
+# Run with `SUPER_SECRET='super secret' ansible-playbook pb.yml`
+
+- hosts: all
+
+  tasks:
+
+    - set_fact:
+        ansible_super_secret: "{{ lookup('env', 'SUPER_SECRET') }}"
+      run_once: true
+
+    - debug:
+        var: ansible_super_secret
