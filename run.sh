@@ -1,5 +1,8 @@
 #!/usr/bin/env bash
 
+echo "DB_ROOT_PWD=${DB_ROOT_PWD}"
+exit
+
 DEBIAN_FRONTEND=noninteractive  
 
 sudo apt-get -y install software-properties-common aptitude git 
