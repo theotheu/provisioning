@@ -13,12 +13,12 @@
         var: db_root_pwd
 
   roles:
-    # - common
-    # - unattended-upgrades
-    # - users
-    # - ansible-pyenv
-    # - ansible-role-nginx
+    - common
+    - unattended-upgrades
+    - users
+    - ansible-pyenv
+    - ansible-role-nginx
     - mysql
-    # - hardening
+    - hardening
 
 
