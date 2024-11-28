@@ -14,7 +14,8 @@ password: '$6$rounds=100000$vcEVMb1oJOPHy6ui$PTnvifu.xDG8cez.FBusjI18nwe9J/Hyms/
 webdev_password: '$6$rounds=100000$vcEVMb1oJOPHy6ui$PTnvifu.xDG8cez.FBusjI18nwe9J/Hyms/IRgXSlsJwyGgSkEHEKRs658A8Lb7DzT6fSVF6Hh4aLolauXWm81'
 
 
-
+vars:
+    db_root_pwd: "{{ db_root_pwd }}"
 
 # MySQL root password
 # mysql_password: PASSWORD
@@ -26,6 +27,10 @@ tasks:
       run_once: true
     - debug:
         var: db_root_pwd
+
+vars:
+    db_root_pwd: "{{ db_root_pwd }}"
+
 
 # Timezone
 server_timezone: Europe/Amsterdam
