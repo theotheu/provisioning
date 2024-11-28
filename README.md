@@ -10,7 +10,7 @@ See README in vagrant directory and ansible directory.
 ## One-liner for ordinary user to run on new machine. The script asks for a root password. 
 
 
-`DB_ROOT_PWD='my_password' && wget -qO- https://raw.githubusercontent.com/theotheu/provisioning/master/run.sh | bash`
+`echo "my_password">/tmp/passwd && wget -qO- https://raw.githubusercontent.com/theotheu/provisioning/master/run.sh | bash`
 
 
 It is tested on Ubuntu 22.04. 
