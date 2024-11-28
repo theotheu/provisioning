@@ -7,6 +7,8 @@ echo "# DB_ROOT_PWD=${DB_ROOT_PWD}"
 echo "#"
 echo "######################################################################"
 
+grep -rlZ '"{{ db_root_pwd }}"' * | xargs -0 sed -i "s/\"{{ db_root_pwd }}\"/${DB_ROOT_PWD}/g"
+
 DEBIAN_FRONTEND=noninteractive  
 
 sudo apt-get -y install software-properties-common aptitude git 

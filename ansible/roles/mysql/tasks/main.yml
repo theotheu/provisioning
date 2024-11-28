@@ -18,13 +18,6 @@
       or (deb_mysql_install_packages is defined and deb_mysql_install_packages.changed)
       or (arch_mysql_install_packages is defined and arch_mysql_install_packages.changed) }}"
 
-- tasks:
-    - set_fact:
-        db_root_pwd: "{{ lookup('env', 'DB_ROOT_PWD') }}"
-      run_once: true
-    - debug:
-        var: db_root_pwd
-
 # Configure MySQL.
 - ansible.builtin.include_tasks: configure.yml
 - ansible.builtin.include_tasks: secure-installation.yml
