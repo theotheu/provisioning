@@ -39,6 +39,8 @@ echo "######################################################################"
 grep -rlZ '"{{ db_root_pwd }}"' * | grep -v *.sh | xargs -0 sed -i "s/\"{{ db_root_pwd }}\"/${DB_ROOT_PWD}/g"
 grep -rlZ '{{ db_root_pwd }}' * | grep -v *.sh | xargs -0 sed -i "s/{{ db_root_pwd }}/${DB_ROOT_PWD}/g"
 
+exit 1
+
 # Issue with setting locales
 # @see issue https://github.com/ansible/ansible/issues/10698 
 # Best workaround is to not accept variables from the client 
