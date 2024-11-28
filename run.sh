@@ -36,8 +36,8 @@ echo "# Replacing variables in Ansible files."
 echo "#"
 echo "######################################################################"
 
-grep -rlZ '"{{ db_root_pwd }}"' * | grep -v *.sh | xargs -0 sed -i "s/\"{{ db_root_pwd }}\"/${DB_ROOT_PWD}/g"
-grep -rlZ '{{ db_root_pwd }}' * | grep -v *.sh | xargs -0 sed -i "s/{{ db_root_pwd }}/${DB_ROOT_PWD}/g"
+grep -rlZ '"{{ db_root_pwd }}"' * | xargs -0 sed -i "s/\"{{ db_root_pwd }}\"/${DB_ROOT_PWD}/g"
+grep -rlZ '{{ db_root_pwd }}' * | xargs -0 sed -i "s/{{ db_root_pwd }}/${DB_ROOT_PWD}/g"
 
 exit 1
 
