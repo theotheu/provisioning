@@ -17,7 +17,7 @@
     # - users
     # - ansible-pyenv
     # - ansible-role-nginx
-    - mysql
+    # - mysql
     # - hardening
 
 
