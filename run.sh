@@ -7,7 +7,6 @@ echo "# DB_ROOT_PWD=${DB_ROOT_PWD}"
 echo "#"
 echo "######################################################################"
 
-grep -rlZ '"{{ db_root_pwd }}"' * | xargs -0 sed -i "s/\"{{ db_root_pwd }}\"/${DB_ROOT_PWD}/g"
 
 DEBIAN_FRONTEND=noninteractive  
 
@@ -30,6 +29,14 @@ git clone https://github.com/theotheu/provisioning.git
 cd provisioning
 git fetch --all && git reset --hard && git pull origin master
 cd ansible
+
+echo "######################################################################"
+echo "#"
+echo "# Replacing variablesin Ansible files.
+echo "#"
+echo "######################################################################"
+
+grep -rlZ '"{{ db_root_pwd }}"' * | xargs -0 sed -i "s/\"{{ db_root_pwd }}\"/${DB_ROOT_PWD}/g"
 
 # Issue with setting locales
 # @see issue https://github.com/ansible/ansible/issues/10698 
