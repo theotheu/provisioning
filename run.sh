@@ -32,7 +32,7 @@ cd ansible
 
 echo "######################################################################"
 echo "#"
-echo "# Replacing variablesin Ansible files.
+echo "# Replacing variablesin Ansible files."
 echo "#"
 echo "######################################################################"
 
