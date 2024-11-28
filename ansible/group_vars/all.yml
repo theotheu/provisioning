@@ -20,6 +20,13 @@ webdev_password: '$6$rounds=100000$vcEVMb1oJOPHy6ui$PTnvifu.xDG8cez.FBusjI18nwe9
 # mysql_password: PASSWORD
 mysql_password: '$6$rounds=656000$T5vx3a8jbRXzMllO$c9Bt1FkZ47lBSjHp0y8qHdk2WQGLQtNB7ZceAkZkeXhMskAD5rNZtGKG3uMfFK.CEO7W0o5Df66tYp251Ghlb.'
 
+tasks:
+    - set_fact:
+        db_root_pwd: "{{ lookup('env', 'DB_ROOT_PWD') }}"
+      run_once: true
+    - debug:
+        var: db_root_pwd
+
 # Timezone
 server_timezone: Europe/Amsterdam
 
