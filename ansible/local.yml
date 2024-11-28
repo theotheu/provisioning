@@ -3,12 +3,14 @@
   become: true
   become_user: root
 
-tasks:
-  - set_fact:
-    db_root_pwd: "{{ lookup('env', 'DB_ROOT_PWD') }}"
-    run_once: true
-  - debug:
-        var: db_root_pwd
+  tasks:
+
+    - set_fact:
+        ansible_super_secret: "{{ lookup('env', 'SUPER_SECRET') }}"
+      run_once: true
+
+    - debug:
+        var: ansible_super_secret
 
   roles:
     - common
