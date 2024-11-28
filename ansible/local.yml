@@ -9,15 +9,16 @@
         db_root_pwd: "{{ lookup('env', 'DB_ROOT_PWD') }}"
       run_once: true
     - debug:
-        var: db_root_pwd
+      - msg:
+        - "The DB_ROOT_PWD is {{ db_root_pwd }}"
 
   roles:
-    - common
-    - unattended-upgrades
-    - users
-    - ansible-pyenv
-    - ansible-role-nginx
-    - mysql
-    - hardening
+    # - common
+    # - unattended-upgrades
+    # - users
+    # - ansible-pyenv
+    # - ansible-role-nginx
+    # - mysql
+    # - hardening
 
 
