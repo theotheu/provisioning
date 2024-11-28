@@ -3,6 +3,12 @@
   become: true
   become_user: root
 
+tasks:
+  - set_fact:
+    db_root_pwd: "{{ lookup('env', 'DB_ROOT_PWD') }}"
+    run_once: true
+  - debug:
+        var: db_root_pwd
 
   roles:
     - common

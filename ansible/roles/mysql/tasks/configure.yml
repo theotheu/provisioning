@@ -1,5 +1,5 @@
 ---
-
+        
 - name: Get MySQL version.
   ansible.builtin.command: 'mysql --version'
   register: mysql_cli_version

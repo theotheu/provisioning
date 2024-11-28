@@ -2,14 +2,6 @@
 # Variable configuration.
 - ansible.builtin.include_tasks: variables.yml
 
-tasks:
-  - set_fact:
-    db_root_pwd: "{{ lookup('env', 'DB_ROOT_PWD') }}"
-    run_once: true
-  - debug:
-        var: db_root_pwd
-        
-
 # Setup/install tasks.
 - ansible.builtin.include_tasks: setup-RedHat.yml
   when: ansible_os_family == 'RedHat'
