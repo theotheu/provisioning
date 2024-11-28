@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 echo "######################################################################"
-export DB_ROOT_PWD=`cat /tmp/pwd`
+export DB_ROOT_PWD=`cat /tmp/my`
 echo "#"
 echo "# DB_ROOT_PWD=${DB_ROOT_PWD}"
 echo "#"
@@ -38,5 +38,7 @@ sudo service ssh restart
 # @see https://stackoverflow.com/questions/43791040/suppress-ansible-ad-hoc-warning
 ANSIBLE_PYTHON_INTERPRETER=auto_silent
 
-ansible-playbook local.yml  --connection=local -vvvv
+ansible-playbook local.yml --connection=local -vvvv
+
+rm -fr /tmp/my
 exit 0
