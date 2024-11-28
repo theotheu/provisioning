@@ -9,8 +9,7 @@
         db_root_pwd: "{{ lookup('env', 'DB_ROOT_PWD') }}"
       run_once: true
 
-    - name: bla die bla
-      - debug:
+    - debug:
         var: db_root_pwd
     
   # - debug:
