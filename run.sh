@@ -1,8 +1,9 @@
 #!/usr/bin/env bash
 
 echo "######################################################################"
+EXPORT DB_ROOT_PWD=`cat /tmp/pwd`
 echo "#"
-echo "DB_ROOT_PWD=`cat /tmp/pwd`
+echo "DB_ROOT_PWD=${DB_ROOT_PWD}"
 echo "#"
 echo "######################################################################"
 
