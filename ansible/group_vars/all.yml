@@ -29,11 +29,6 @@ tasks:
         var: db_root_pwd
 
 
-vars:
-    db_root_pwd1: "{{ db_root_pwd }}"
-    - debug:
-      var: db_root_pwd1
-
 # Timezone
 server_timezone: Europe/Amsterdam
 
