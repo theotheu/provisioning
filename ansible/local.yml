@@ -10,21 +10,15 @@
       run_once: true
 
     - debug:
-      msg:
-        - "The DB_ROOT_PWD is {{ db_root_pwd }}"
-        # var: db_root_pwd
-    
-  # - debug:
-  #   - msg:
-  #     - "The DB_ROOT_PWD is {{ db_root_pwd }}"
+        var: db_root_pwd
 
   roles:
-    # - common
-    # - unattended-upgrades
-    # - users
-    # - ansible-pyenv
-    # - ansible-role-nginx
-    # - mysql
-    # - hardening
+    - common
+    - unattended-upgrades
+    - users
+    - ansible-pyenv
+    - ansible-role-nginx
+    - mysql
+    - hardening
 
 
