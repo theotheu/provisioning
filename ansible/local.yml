@@ -4,14 +4,14 @@
   become_user: root
 
 
- roles:
-  - common
-  - unattended-upgrades
-  - users
-  - ansible-pyenv
-  - ansible-role-nginx
-  - mysql
-  - hardening
+  roles:
+    - common
+    - unattended-upgrades
+    - users
+    - ansible-pyenv
+    - ansible-role-nginx
+    - mysql
+    - hardening
     
 
 # - import_playbook: packages.yml    
