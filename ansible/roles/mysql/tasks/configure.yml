@@ -1,12 +1,5 @@
 ---
 
-tasks:
-    - set_fact:
-        db_root_pwd: "{{ lookup('env', 'DB_ROOT_PWD') }}"
-      run_once: true
-    - debug:
-        var: db_root_pwd
-        
 - name: Get MySQL version.
   ansible.builtin.command: 'mysql --version'
   register: mysql_cli_version
