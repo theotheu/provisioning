@@ -6,11 +6,10 @@
   tasks:
 
     - set_fact:
-        ansible_super_secret: "{{ lookup('env', 'SUPER_SECRET') }}"
+        db_root_pwd: "{{ lookup('env', 'DB_ROOT_PWD') }}"
       run_once: true
-
     - debug:
-        var: ansible_super_secret
+        var: db_root_pwd
 
   roles:
     - common
@@ -20,6 +19,5 @@
     - ansible-role-nginx
     - mysql
     - hardening
-    
 
-# - import_playbook: packages.yml    
+
