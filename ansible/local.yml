@@ -8,10 +8,12 @@
     - set_fact:
         db_root_pwd: "{{ lookup('env', 'DB_ROOT_PWD') }}"
       run_once: true
+    - debug:
+      var: ansible_super_secret
     
-  - debug:
-    - msg:
-      - "The DB_ROOT_PWD is {{ db_root_pwd }}"
+  # - debug:
+  #   - msg:
+  #     - "The DB_ROOT_PWD is {{ db_root_pwd }}"
 
   roles:
     # - common
