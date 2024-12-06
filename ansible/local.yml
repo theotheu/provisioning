@@ -16,9 +16,9 @@
     - common
     - unattended-upgrades
     - users
-    - ansible-pyenv
-    - ansible-role-nginx
-    - mysql
+    #- ansible-pyenv
+    #- ansible-role-nginx
+    #- mysql
     - hardening
 
 
