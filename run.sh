@@ -1,13 +1,6 @@
 #!/usr/bin/env bash
 
-echo "######################################################################"
 export DB_ROOT_PWD=`cat /tmp/my`
-echo "#"
-echo "# DB_ROOT_PWD=${DB_ROOT_PWD}"
-echo "#"
-echo "######################################################################"
-
-
 DEBIAN_FRONTEND=noninteractive  
 
 sudo apt-get -y install software-properties-common aptitude git 
