@@ -16,3 +16,9 @@
     dest=/etc/fail2ban/jail.local
   notify:
     - reload fail2ban
+
+- name: Enable fail2ban as a service
+  ansible.builtin.systemd_service:
+    name: fail2ban
+    state: started
+    enabled: true    
