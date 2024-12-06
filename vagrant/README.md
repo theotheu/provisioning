@@ -1,6 +1,6 @@
 Installation of vagrant
 -----------------------
-- Go to https://www.virtualbox.org/wiki/Downloads and select virtualbox for your platform
+- Read https://joachim8675309.medium.com/vagrant-with-macbook-mx-arm64-0f590fd7e48a
 - Go to http://www.vagrantup.com/downloads.html and select vagrant for your platform
 
 
@@ -24,7 +24,3 @@ Destroying
 ----------
 `vagrant destroy`
 
-
-Documentation
---------------------------
-@see https://joachim8675309.medium.com/vagrant-with-macbook-mx-arm64-0f590fd7e48a
