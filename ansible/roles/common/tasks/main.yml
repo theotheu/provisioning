@@ -7,11 +7,19 @@
 - name: Set locale languages
   locale_gen: name=en_US.UTF-8
 
-- name: Update and upgrade apt packages
-  apt: >
-    upgrade=yes
-    update_cache=yes
-    cache_valid_time=3600
+- name: Update all packages to their latest version
+  ansible.builtin.apt:
+    name: "*"
+    state: latest
+
+- name: Run the equivalent of "apt-get update" as a separate step
+  ansible.builtin.apt:
+    update_cache: yes
+    
+- name: Only run "update_cache=yes" if the last one is more than 3600 seconds ago
+  ansible.builtin.apt:
+    update_cache: yes
+    cache_valid_time: 3600
     
 - name: Install common packages
   action:
