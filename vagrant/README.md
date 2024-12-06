@@ -25,31 +25,6 @@ Destroying
 `vagrant destroy`
 
 
-Installation of ojdbc6.jar (optional)
+Documentation
 --------------------------
-
-Search at google for actual location of ojdbc6.jar at ```https://www.google.nl/search?q=ojdbc6.jar+download```
-
-You might have to login with yout OTN account.
-
-Accept the license agreement and download the file.
-
-Install the plugin with
-`mvn install:install-file -Dfile=./ojdbc6.jar -DgroupId=com.oracle -DartifactId=ojdbc6 -Dversion=11.2.0.4  -Dpackaging=jar`
-
-Modify your POM to accomodate the version
-`
-<project ...>
- 
-	<dependencies>>
- 
-		<!-- ORACLE database driver -->
-		<dependency>
-			<groupId>com.oracle</groupId>
-			<artifactId>ojdbc6</artifactId>
-			<version>11.2.0.4</version>
-		</dependency>
- 
-	</dependencies>
-</project>
-`
+@see https://joachim8675309.medium.com/vagrant-with-macbook-mx-arm64-0f590fd7e48a
