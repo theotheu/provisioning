@@ -12,7 +12,7 @@ Checkout the ubuntu version, eg `git checkout 18.04`
 
 `cd vagrant`
 
-`vagrant up`
+`vagrant up --provider=qemu`
 
 Connecting
 ----------
